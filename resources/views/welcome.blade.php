@@ -10,6 +10,7 @@
 
     <section>
         <x-main-section></x-main-section>
+        <x-main-featured></x-main-featured>
     </section>
 
     <x-main-footer></x-main-footer>
