@@ -14,8 +14,8 @@
             <a class="mr-5 hover:text-gray-900">Stores</a>
             <a class="mr-5 hover:text-gray-900">Contact</a>
             @guest
-                <a class="mr-5 hover:text-gray-900">login</a>
-                <a class="mr-5 hover:text-gray-900">Register</a>
+                <a href="{{ route('login') }}" class="mr-5 hover:text-gray-900">login</a>
+                <a href="{{ route('register') }}" class="mr-5 hover:text-gray-900">Register</a>
             @endguest
             @auth
                 <a class="mr-5 hover:text-gray-900">{{ auth()->user()->name }}</a>

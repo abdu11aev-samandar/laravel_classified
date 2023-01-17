@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryContoller extends Controller
 {
@@ -26,7 +28,7 @@ class CategoryContoller extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -35,9 +37,21 @@ class CategoryContoller extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        //
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('categories');
+
+            Category::create([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'image' => $path
+            ]);
+
+            return redirect()->route('categories.index');
+        }
+
+        return redirect()->route('categories.index');
     }
 
     /**
