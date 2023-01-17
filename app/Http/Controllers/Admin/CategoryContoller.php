@@ -40,7 +40,7 @@ class CategoryContoller extends Controller
     public function store(StoreCategoryRequest $request)
     {
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('categories');
+            $path = $request->file('image')->store('public/categories');
 
             Category::create([
                 'name' => $request->name,
@@ -48,10 +48,10 @@ class CategoryContoller extends Controller
                 'image' => $path
             ]);
 
-            return redirect()->route('categories.index');
+            return redirect()->route('categories.index')->with('message','Category Created.');
         }
 
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('message','Category Created.');
     }
 
     /**
@@ -71,9 +71,9 @@ class CategoryContoller extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -83,9 +83,23 @@ class CategoryContoller extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCategoryRequest $request, Category $category)
     {
-        //
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/categories');
+            $category->update([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'image' => $path
+            ]);
+            return redirect()->route('categories.index')->with('message','Category updated with image.');
+        } else {
+            $category->update([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name)
+            ]);
+            return redirect()->route('categories.index')->with('message','Category Updated.');
+        }
     }
 
     /**
@@ -94,8 +108,10 @@ class CategoryContoller extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect()->route('categories.index')->with('message','Category Deleted.');
     }
 }
