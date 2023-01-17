@@ -43,7 +43,8 @@
         </div>
         <nav :class="{'block': open, 'hidden': !open}" class="flex-grow px-4 pb-4 md:block md:pb-0 md:overflow-y-auto">
             <x-app-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">Dashboard</x-app-link>
-            <x-app-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories')">Categories</x-app-link>
+            <x-app-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">Categories</x-app-link>
+            <x-app-link href="{{ route('subcategories.index') }}" :active="request()->routeIs('subcategories.index')">Sub Categories</x-app-link>
 
             <div @click.away="open = false" class="relative" x-data="{ open: false }">
                 <button @click="open = !open"
