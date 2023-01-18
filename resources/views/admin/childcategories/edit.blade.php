@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Sub Category')  }}
+            {{ __('Edit Child Category')  }}
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
         <div class="flex flex-col">
             <div class="overflow-hidden rounded-lg m-5">
                 <div class="flex justify-start">
-                    <a href="{{ route('subcategories.index') }}"
+                    <a href="{{ route('childcategories.index') }}"
                        class="py-2 px-4 m-2 bg-green-500 hover:bg-green-300 text-gray-50">Back</a>
                 </div>
             </div>
@@ -23,11 +23,11 @@
                 <div class="md:grid md:grid-cols-3">
                     <div class="md:col-span-2">
                         <div class="px-4 sm:px-0">
-                            <h3 class="text-lg font-medium leading-6 text-gray-900">Update Category</h3>
+                            <h3 class="text-lg font-medium leading-6 text-gray-900">Update Child Category</h3>
                         </div>
                     </div>
                     <div class="mt-5 md:col-span-2 md:mt-0">
-                        <form action="{{ route('subcategories.update',$sub_category->id) }}" method="POST"
+                        <form action="{{ route('childcategories.update',$child_category->id) }}" method="POST"
                               enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -40,7 +40,7 @@
                                         <div class="mt-1 flex items-center">
                                             <input type="text" name="name" id="name"
                                                    class="block w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                                   value="{{ $sub_category->name }}">
+                                                   value="{{ $child_category->name }}">
                                         </div>
                                         @error('name') <span class="error">{{ $message }}</span>
                                         @enderror
@@ -48,14 +48,14 @@
 
                                     <div class="col-span-3 sm:col-span-2">
                                         <label for="name"
-                                               class="block text-sm font-medium text-gray-700">Category</label>
+                                               class="block text-sm font-medium text-gray-700">Sub Category</label>
                                         <div class="mt-1 flex items-center">
-                                            <select name="category_id">
-                                                @foreach(\App\Models\Category::all() as $category)
-                                                    <option value="{{ $category->id }}" {{ $category->id == $sub_category->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                            <select name="sub_category_id">
+                                                @foreach(\App\Models\SubCategory::all() as $sub_category)
+                                                    <option value="{{ $sub_category->id }}" {{ $sub_category->id == $child_category->sub_category_id ? 'selected' : '' }}>{{ $sub_category->name }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('category_id') <span class="error">{{ $message }}</span>
+                                            @error('sub_category_id') <span class="error">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -64,7 +64,7 @@
                                     <div class="col-span-3 sm:col-span-2">
                                         <label class="block text-sm font-medium text-gray-700">Image</label>
                                         <div class="w-full m-2 p-2">
-                                            <img class="h-32 w-32" src="{{ Storage::url($sub_category->image) }}">
+                                            <img class="h-32 w-32" src="{{ Storage::url($child_category->image) }}">
                                         </div>
                                         <div class="mt-1 flex items-center">
                                             <input type="file" id="image" name="image"

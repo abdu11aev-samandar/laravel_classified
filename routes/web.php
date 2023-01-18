@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ChildCategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +32,4 @@ Route::middleware([
 
 Route::resource('categories', CategoryController::class);
 Route::resource('subcategories', SubCategoryController::class);
+Route::resource('childcategories', ChildCategoryController::class);

@@ -45,6 +45,7 @@
             <x-app-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">Dashboard</x-app-link>
             <x-app-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">Categories</x-app-link>
             <x-app-link href="{{ route('subcategories.index') }}" :active="request()->routeIs('subcategories.index')">Sub Categories</x-app-link>
+            <x-app-link href="{{ route('childcategories.index') }}" :active="request()->routeIs('childcategories.index')">Child Categories</x-app-link>
 
             <div @click.away="open = false" class="relative" x-data="{ open: false }">
                 <button @click="open = !open"
