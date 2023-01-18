@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\SubCategory;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Models\Category;
 use Illuminate\Support\Str;
 
-class SubCategoryContoller extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,8 @@ class SubCategoryContoller extends Controller
      */
     public function index()
     {
-        $sub_categories = SubCategory::paginate(12);
-
-        return view('admin.subcategories.index', compact('sub_categories'));
+        $categories = Category::paginate(12);
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -28,7 +27,7 @@ class SubCategoryContoller extends Controller
      */
     public function create()
     {
-        return view('admin.subcategories.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -37,15 +36,14 @@ class SubCategoryContoller extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('public/subcategories');
+            $path = $request->file('image')->store('public/categories');
 
-            SubCategory::create([
+            Category::create([
                 'name' => $request->name,
                 'slug' => Str::slug($request->name),
-                'category_id' => $request->category_id,
                 'image' => $path
             ]);
 
@@ -53,7 +51,6 @@ class SubCategoryContoller extends Controller
         }
 
         return redirect()->route('categories.index')->with('message','Category Created.');
-
     }
 
     /**
@@ -73,9 +70,9 @@ class SubCategoryContoller extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -85,9 +82,23 @@ class SubCategoryContoller extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCategoryRequest $request, Category $category)
     {
-        //
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/categories');
+            $category->update([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'image' => $path
+            ]);
+            return redirect()->route('categories.index')->with('message','Category updated with image.');
+        } else {
+            $category->update([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name)
+            ]);
+            return redirect()->route('categories.index')->with('message','Category Updated.');
+        }
     }
 
     /**
@@ -96,8 +107,10 @@ class SubCategoryContoller extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect()->route('categories.index')->with('message','Category Deleted.');
     }
 }

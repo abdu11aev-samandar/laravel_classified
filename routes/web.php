@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryContoller;
-use App\Http\Controllers\Admin\SubCategoryContoller;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,5 +29,5 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::resource('categories', CategoryContoller::class);
-Route::resource('subcategories', SubCategoryContoller::class);
+Route::resource('categories', CategoryController::class);
+Route::resource('subcategories', SubCategoryController::class);

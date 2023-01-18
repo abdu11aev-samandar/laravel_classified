@@ -1,15 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        @if(session('message'))
-            <div class="bg-indigo-600 text-gray-200 m-2 p-2 rounded-md">{{ session('message') }}</div>
-        @endif
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Categories') }}
         </h2>
     </x-slot>
 
     <div class="container mx-auto">
-
+        @if(session('message'))
+            <div class="bg-indigo-600 text-gray-200 m-2 p-2 rounded-md">{{ session('message') }}</div>
+        @endif
         <div class="flex flex-col">
             <div class="overflow-hidden rounded-lg m-5">
                 <div class="flex justify-end">
