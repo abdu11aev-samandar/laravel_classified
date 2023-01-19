@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChildCategoryController;
+use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\SubCategoryController;
@@ -36,7 +37,8 @@ Route::resources([
     'categories' => CategoryController::class,
     'subcategories' => SubCategoryController::class,
     'childcategories' => ChildCategoryController::class,
-    'countries'=> CountryController::class,
-    'states'=> StateController::class
+    'countries' => CountryController::class,
+    'states' => StateController::class,
+    'cities' => CityController::class
 ]);
 
