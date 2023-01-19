@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCountryRequest;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
 class CountryController extends Controller
@@ -14,7 +16,9 @@ class CountryController extends Controller
      */
     public function index()
     {
-        //
+        $countries = Country::paginate(12);
+
+        return view('admin.countries.index', compact('countries'));
     }
 
     /**
@@ -24,24 +28,26 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.countries.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCountryRequest $request)
     {
-        //
+        Country::create($request->validated());
+
+        return redirect()->route('countries.index')->with('message', 'Country Created');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -52,34 +58,38 @@ class CountryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Country $country)
     {
-        //
+        return view('admin.countries.edit', compact('country'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCountryRequest $request, Country $country)
     {
-        //
+        $country->update($request->validated());
+
+        return redirect()->route('countries.index')->with('message', 'Country Updated.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Country $country)
     {
-        //
+        $country->delete();
+
+        return redirect()->route('countries.index')->with('message', 'Country Deleted.');
     }
 }

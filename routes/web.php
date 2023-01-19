@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChildCategoryController;
+use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,10 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::resource('categories', CategoryController::class);
-Route::resource('subcategories', SubCategoryController::class);
-Route::resource('childcategories', ChildCategoryController::class);
+Route::resources([
+    'categories' => CategoryController::class,
+    'subcategories' => SubCategoryController::class,
+    'childcategories' => ChildCategoryController::class,
+    'countries'=> CountryController::class,
+]);
+

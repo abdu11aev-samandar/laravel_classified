@@ -68,6 +68,9 @@
                 @endforelse
                 </tbody>
             </table>
+            <div class="p-2 m-2">
+                {{ $sub_categories->links() }}
+            </div>
         </div>
 
     </div>

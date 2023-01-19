@@ -1,19 +1,19 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Child Categories') }}
+            {{ __('Countries') }}
         </h2>
     </x-slot>
 
     <div class="container mx-auto">
         @if(session('message'))
-            <div class="bg-indigo-600 text-gray-200 m-2 p-2 rounded-md text-center">{{ session('message') }}</div>
+            <div class="bg-indigo-600 text-gray-200 m-2 p-2 rounded-md">{{ session('message') }}</div>
         @endif
         <div class="flex flex-col">
             <div class="overflow-hidden rounded-lg m-5">
                 <div class="flex justify-end">
-                    <a href="{{ route('childcategories.create') }}"
-                       class="py-2 px-4 m-2 bg-green-500 hover:bg-green-300 text-gray-50">New Child Category</a>
+                    <a href="{{ route('countries.create') }}"
+                       class="py-2 px-4 m-2 bg-green-500 hover:bg-green-300 text-gray-50">New Country</a>
                 </div>
             </div>
         </div>
@@ -24,52 +24,46 @@
                 <thead class="bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Name</th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Slug</th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Image</th>
+                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Country Code</th>
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-                @forelse($child_categories as $category)
+                @forelse($countries as $country)
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
-                                {{ $category->name }}
+                                {{ $country->name }}
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
-                                {{ $category->slug }}
+                                {{ $country->country_code }}
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="flex items-center">
-                                <img class="h-12 w-12 rounded-md" src="{{ Storage::url($category->image) }}">
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <a href="{{ route('childcategories.edit',$category->id) }}"
+                            <a href="{{ route('countries.edit',$country->id) }}"
                                class="text-indigo-600 hover:text-indigo-900">Edit</a>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <form method="POST" action="{{ route('childcategories.destroy', $category->id) }}">
+                            <form method="POST" action="{{ route('countries.destroy', $country->id) }}">
                                 @csrf
                                 @method('DELETE')
 
                                 <a class="text-red-600 hover:text-red-900"
-                                   href="{{ route('childcategories.destroy', $category->id) }}"
+                                   href="{{ route('countries.destroy', $country->id) }}"
                                    @click.prevent="$root.submit();">
                                     Delete
                                 </a>
                             </form>
                         </td>
                         @empty
-                            <td class="px-6 py-4 whitespace-nowrap">No Child Categories</td>
+                            <td class="px-6 py-4 whitespace-nowrap">No Countries</td>
                     </tr>
                 @endforelse
                 </tbody>
             </table>
             <div class="p-2 m-2">
-                {{ $child_categories->links() }}
+                {{ $countries->links() }}
             </div>
         </div>
 

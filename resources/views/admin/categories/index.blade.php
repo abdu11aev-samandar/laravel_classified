@@ -29,7 +29,7 @@
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-                @foreach($categories as $category)
+                @forelse($categories as $category)
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
@@ -62,10 +62,15 @@
                                 </a>
                             </form>
                         </td>
+                        @empty
+                            <td class="px-6 py-4 whitespace-nowrap">No Categories</td>
                     </tr>
-                @endforeach
+                @endforelse
                 </tbody>
             </table>
+            <div class="p-2 m-2">
+                {{ $categories->links() }}
+            </div>
         </div>
 
     </div>
