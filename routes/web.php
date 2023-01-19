@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChildCategoryController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,5 +37,6 @@ Route::resources([
     'subcategories' => SubCategoryController::class,
     'childcategories' => ChildCategoryController::class,
     'countries'=> CountryController::class,
+    'states'=> StateController::class
 ]);
 

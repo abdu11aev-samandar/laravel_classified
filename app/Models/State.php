@@ -11,7 +11,7 @@ class State extends Model
 
     protected $fillable = [
         'country_id',
-        'nane'
+        'name'
     ];
 
     public function country()
