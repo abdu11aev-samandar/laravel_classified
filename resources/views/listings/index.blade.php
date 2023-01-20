@@ -15,7 +15,7 @@
                 <div class="py-2 align-middle inline-block w-full sm:px-6 lg:px-8">
                     <div class="flex justify-end">
                         <a href="{{ route('listings.create') }}"
-                           class="py-2 px-4 m-2 bg-green-500 hover:bg-green-300 text-gray-50 rounded-md">New
+                           class="py-2 px-4 m-2 bg-green-500 hover:bg-green-300 text-gray-50">New
                             Listing</a>
                     </div>
                 </div>
