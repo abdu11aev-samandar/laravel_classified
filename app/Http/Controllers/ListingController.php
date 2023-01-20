@@ -67,7 +67,7 @@ class ListingController extends Controller
             'image_three' => $image_three,
         ]);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('listings.index')->with('message', 'Listing created successfully');
 
     }
 
@@ -90,7 +90,9 @@ class ListingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $listing = Listing::find($id);
+
+        return view('listings.edit', compact('listing'));
     }
 
     /**
