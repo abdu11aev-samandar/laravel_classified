@@ -34,6 +34,7 @@ class DependedEditCountry extends Component
         if (!is_null($this->selectedCountry)) {
             $this->states = State::where('country_id', $country)->get();
         }
+        $this->reset(['selectedState', 'selectedCity', 'cities']);
     }
 
     public function updatedSelectedState($state)

@@ -104,7 +104,53 @@ class ListingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $listing = Listing::find($id);
+
+        $featured_image = $listing->featured_image;
+        $image_one = $listing->image_one;
+        $image_two = $listing->image_two;
+        $image_three = $listing->image_three;
+
+        if ($request->hasFile('featured_image')) {
+            $featured_image = $request->file('featured_image')->store('public/listings');
+        }
+
+        if ($request->hasFile('image_one')) {
+            $image_one = $request->file('image_one')->store('public/listings');
+        }
+
+        if ($request->hasFile('image_two')) {
+            $image_two = $request->file('image_two')->store('public/listings');
+        }
+
+        if ($request->hasFile('image_three')) {
+            $image_three = $request->file('image_three')->store('public/listings');
+        }
+
+
+        $listing->update([
+            'category_id' => $request->category_id,
+            'sub_category_id' => $request->sub_category_id,
+            'child_category_id' => $request->child_category_id,
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'description' => $request->description,
+            'price' => $request->price,
+            'price_negotiable' => $request->price_negotiable,
+            'location' => $request->location,
+            'condition' => $request->condition,
+            'phone_number' => $request->phone_number,
+            'is_published' => $request->is_published,
+            'country_id' => $request->country_id,
+            'city_id' => $request->city_id,
+            'state_id' => $request->state_id,
+            'featured_image' => $featured_image,
+            'image_one' => $image_one,
+            'image_two' => $image_two,
+            'image_three' => $image_three,
+        ]);
+
+        return redirect()->route('listings.index')->with('message', 'Listing updated successfully');
     }
 
     /**
