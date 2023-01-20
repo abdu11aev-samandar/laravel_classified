@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreListingRequest;
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ListingController extends Controller
 {
@@ -36,14 +37,33 @@ class ListingController extends Controller
      */
     public function store(StoreListingRequest $request)
     {
-        $request['featured_images'] = 'featured_images';
-        $request['image_one'] = 'image_one_image';
-        $request['image_two'] = 'image_two_image';
-        $request['image_three'] = 'image_three_image';
-        $request['slug'] = 'slug';
-        $request['user_id'] = 1;
+        $featured_image = $request->file('featured_image')->store('public/listings');
+        $image_one = $request->file('image_one')->store('public/listings');
+        $image_two = $request->file('image_two')->store('public/listings');
+        $image_three = $request->file('image_three')->store('public/listings');
 
-        Listing::create($request->all());
+        Listing::create([
+            'user_id' => auth()->user()->id,
+            'category_id' => $request->category_id,
+            'sub_category_id' => $request->sub_category_id,
+            'child_category_id' => $request->child_category_id,
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'description' => $request->description,
+            'price' => $request->price,
+            'price_negotiable' => $request->price_negotiable,
+            'location' => $request->location,
+            'condition' => $request->condition,
+            'phone_number' => $request->phone_number,
+            'is_published' => $request->is_published,
+            'country_id' => $request->country_id,
+            'city_id' => $request->city_id,
+            'state_id' => $request->state_id,
+            'featured_image' => $featured_image,
+            'image_one' => $image_one,
+            'image_two' => $image_two,
+            'image_three' => $image_three,
+        ]);
 
         return redirect()->route('dashboard');
 

@@ -33,7 +33,7 @@ return new class extends Migration {
             $table->unsignedInteger('state_id')->nullable();
             $table->unsignedInteger('city_id')->nullable();
             $table->string('phone_number');
-            $table->boolean('is_publish')->default(0);
+            $table->boolean('is_published')->default(0);
             $table->timestamps();
         });
     }

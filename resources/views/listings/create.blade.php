@@ -61,8 +61,8 @@
                                             <select name="price_negotiable"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
 
-                                                <option value="fixed">Fixed </option>
-                                                <option value="negotiable">Negotiable </option>
+                                                <option value="fixed">Fixed</option>
+                                                <option value="negotiable">Negotiable</option>
                                             </select>
                                             @error('price_negotiable') <span
                                                 class="error">{{ $message }}</span>
@@ -77,8 +77,8 @@
                                             <select name="condition"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
 
-                                                <option value="new">New </option>
-                                                <option value="used">Used </option>
+                                                <option value="new">New</option>
+                                                <option value="used">Used</option>
                                             </select>
                                             @error('condition') <span class="error">{{ $message }}</span>
                                             @enderror
@@ -117,8 +117,8 @@
                                             <select name="is_published"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
 
-                                                <option value="0">Unpublished </option>
-                                                <option value="1">Published </option>
+                                                <option value="0">Unpublished</option>
+                                                <option value="1">Published</option>
                                             </select>
                                             @error('is_published') <span
                                                 class="error">{{ $message }}</span>
@@ -126,8 +126,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{--@livewire('dependet-country')
-                                @livewire('image-preview')--}}
+                                @livewire('depended-country')
+                                @livewire('image-preview')
                                 <div class="px-4 py-3 bg-gray-50 sm:px-6">
                                     <button type="submit"
                                             class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -135,6 +135,7 @@
                                     </button>
                                 </div>
                             </div>
+                        </div>
                     </form>
                 </div>
             </div>
