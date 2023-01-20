@@ -43,5 +43,4 @@ Route::resources([
     'cities' => CityController::class
 ]);
 
-Route::get('listings/create', [ListingController::class, 'create'])->name('listings.create');
-Route::post('listings/store', [ListingController::class, 'store'])->name('listings.store');
+Route::resource('listings', ListingController::class)->middleware('auth');

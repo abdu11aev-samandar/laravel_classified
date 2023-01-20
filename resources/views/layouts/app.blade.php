@@ -43,6 +43,7 @@
         </div>
         <nav :class="{'block': open, 'hidden': !open}" class="flex-grow px-4 pb-4 md:block md:pb-0 md:overflow-y-auto">
             <x-app-link class="bg-green-500 hover:bg-green-700" href="{{ route('listings.create') }}" :active="request()->routeIs('listings.create')">New Listing</x-app-link>
+            <x-app-link class="bg-green-500 hover:bg-green-700" href="{{ route('listings.index') }}" :active="request()->routeIs('listings.index')">My Listings</x-app-link>
             <x-app-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">Dashboard</x-app-link>
             <x-app-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">Categories</x-app-link>
             <x-app-link href="{{ route('subcategories.index') }}" :active="request()->routeIs('subcategories.index')">Sub Categories</x-app-link>
