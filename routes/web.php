@@ -43,4 +43,5 @@ Route::resources([
     'cities' => CityController::class
 ]);
 
-Route::get('ads/create', [ListingController::class, 'create'])->name('ads.create');
+Route::get('listings/create', [ListingController::class, 'create'])->name('listings.create');
+Route::post('listings/store', [ListingController::class, 'store'])->name('listings.store');

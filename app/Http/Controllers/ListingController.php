@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreListingRequest;
+use App\Models\Listing;
 use Illuminate\Http\Request;
 
 class ListingController extends Controller
@@ -32,9 +34,19 @@ class ListingController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreListingRequest $request)
     {
-        //
+        $request['featured_images'] = 'featured_images';
+        $request['image_one'] = 'image_one_image';
+        $request['image_two'] = 'image_two_image';
+        $request['image_three'] = 'image_three_image';
+        $request['slug'] = 'slug';
+        $request['user_id'] = 1;
+
+        Listing::create($request->all());
+
+        return redirect()->route('dashboard');
+
     }
 
     /**
