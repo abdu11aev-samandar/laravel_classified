@@ -31,6 +31,7 @@ class DependedEditCategory extends Component
     {
         if (!is_null($this->selectedCategory)) {
             $this->subCategories = SubCategory::where('category_id', $category)->get();
+            $this->reset('selectedSubCategory','selectedChildCategory','childCategories');
         }
     }
 

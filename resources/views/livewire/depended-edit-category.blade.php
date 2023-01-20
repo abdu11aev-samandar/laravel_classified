@@ -6,7 +6,7 @@
         <select wire:model="selectedCategory" name="category_id"
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             @foreach ($categories as $category)
-                <option value="{{ $category->id }}" {{$category->id == $selectedCategory ? 'selected' : ''}}>
+                <option value="{{ $category->id }}">
                     {{ $category->name }}</option>
             @endforeach
         </select>
@@ -21,7 +21,7 @@
             <select wire:model="selectedSubCategory" name="sub_category_id"
                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 @foreach ($subCategories as $sub_category)
-                    <option value="{{ $sub_category->id }}" {{$category->id == $selectedSubCategory ? 'selected' : ''}}>
+                    <option value="{{ $sub_category->id }}">
                         {{ $sub_category->name }}</option>
                 @endforeach
             </select>
@@ -37,7 +37,7 @@
             <select name="child_category_id"
                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 @foreach ($childCategories as $category)
-                    <option value="{{ $category->id }}"  {{$category->id == $selectedChildCategory ? 'selected' : ''}}>
+                    <option value="{{ $category->id }}">
                         {{ $category->name }}</option>
                 @endforeach
             </select>
