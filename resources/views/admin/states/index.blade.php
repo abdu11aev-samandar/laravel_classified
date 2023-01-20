@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('States') }}
@@ -12,7 +12,7 @@
         <div class="flex flex-col">
             <div class="overflow-hidden rounded-lg m-5">
                 <div class="flex justify-end">
-                    <a href="{{ route('states.create') }}"
+                    <a href="{{ route('admin.states.create') }}"
                        class="py-2 px-4 m-2 bg-green-500 hover:bg-green-300 text-gray-50">New State</a>
                 </div>
             </div>
@@ -41,16 +41,16 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <a href="{{ route('states.edit',$state->id) }}"
+                            <a href="{{ route('admin.states.edit',$state->id) }}"
                                class="text-indigo-600 hover:text-indigo-900">Edit</a>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <form method="POST" action="{{ route('states.destroy', $state->id) }}">
+                            <form method="POST" action="{{ route('admin.states.destroy', $state->id) }}">
                                 @csrf
                                 @method('DELETE')
 
                                 <a class="text-red-600 hover:text-red-900"
-                                   href="{{ route('states.destroy', $state->id) }}"
+                                   href="{{ route('admin.states.destroy', $state->id) }}"
                                    @click.prevent="$root.submit();">
                                     Delete
                                 </a>
@@ -69,4 +69,4 @@
 
     </div>
 
-</x-app-layout>
+</x-admin-layout>

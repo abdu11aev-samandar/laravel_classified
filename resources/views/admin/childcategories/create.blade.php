@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('New Child Category') }}
@@ -10,7 +10,7 @@
         <div class="flex flex-col">
             <div class="overflow-hidden rounded-lg m-5">
                 <div class="flex justify-start">
-                    <a href="{{ route('childcategories.index') }}"
+                    <a href="{{ route('admin.childcategories.index') }}"
                        class="py-2 px-4 m-2 bg-green-500 hover:bg-green-300 text-gray-50">Back</a>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="mt-5 md:col-span-2 md:mt-0">
-                        <form action="{{ route('childcategories.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.childcategories.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="shadow sm:overflow-hidden sm:rounded-md">
                                 <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
@@ -84,5 +84,5 @@
 
     </div>
 
-</x-app-layout>
+</x-admin-layout>
 

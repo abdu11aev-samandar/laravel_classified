@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit Country')  }}
@@ -10,7 +10,7 @@
         <div class="flex flex-col">
             <div class="overflow-hidden rounded-lg m-5">
                 <div class="flex justify-start">
-                    <a href="{{ route('countries.index') }}"
+                    <a href="{{ route('admin.countries.index') }}"
                        class="py-2 px-4 m-2 bg-green-500 hover:bg-green-300 text-gray-50">Back</a>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="mt-5 md:col-span-2 md:mt-0">
-                        <form action="{{ route('countries.update',$country->id) }}" method="POST">
+                        <form action="{{ route('admin.countries.update',$country->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="shadow sm:overflow-hidden sm:rounded-md">
@@ -71,5 +71,5 @@
 
     </div>
 
-</x-app-layout>
+</x-admin-layout>
 

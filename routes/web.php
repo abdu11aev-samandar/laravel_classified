@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminContoller;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChildCategoryController;
 use App\Http\Controllers\Admin\CityController;
@@ -38,13 +39,18 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::resources([
-    'categories' => CategoryController::class,
-    'subcategories' => SubCategoryController::class,
-    'childcategories' => ChildCategoryController::class,
-    'countries' => CountryController::class,
-    'states' => StateController::class,
-    'cities' => CityController::class
-]);
 
 Route::resource('listings', ListingController::class)->middleware('auth');
+
+Route::group(['prefix' => 'admin', 'name' => 'admin.', 'middleware' => ['auth', 'role:admin']], function () {
+    Route::get('/', [AdminContoller::class, 'index'])->name('admin.index');
+    Route::resources([
+        'categories' => CategoryController::class,
+        'listings' => ListingController::class,
+        'subcategories' => SubCategoryController::class,
+        'childcategories' => ChildCategoryController::class,
+        'countries' => CountryController::class,
+        'states' => StateController::class,
+        'cities' => CityController::class
+    ]);
+});

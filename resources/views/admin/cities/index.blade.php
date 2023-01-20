@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Cities') }}
@@ -12,12 +12,12 @@
         <div class="flex flex-col">
             <div class="overflow-hidden rounded-lg m-5">
                 <div class="flex justify-end">
-                    <a href="{{ route('cities.create') }}"
+                    <a href="{{ route('admin.cities.create') }}"
                        class="py-2 px-4 m-2 bg-green-500 hover:bg-green-300 text-gray-50">New City</a>
                 </div>
             </div>
         </div>
-
+/*'role:admin'*/
         <!-- component -->
         <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
             <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
@@ -41,16 +41,16 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <a href="{{ route('cities.edit',$city->id) }}"
+                            <a href="{{ route('admin.cities.edit',$city->id) }}"
                                class="text-indigo-600 hover:text-indigo-900">Edit</a>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <form method="POST" action="{{ route('cities.destroy', $city->id) }}">
+                            <form method="POST" action="{{ route('admin.cities.destroy', $city->id) }}">
                                 @csrf
                                 @method('DELETE')
 
                                 <a class="text-red-600 hover:text-red-900"
-                                   href="{{ route('cities.destroy', $city->id) }}"
+                                   href="{{ route('admin.cities.destroy', $city->id) }}"
                                    @click.prevent="$root.submit();">
                                     Delete
                                 </a>
@@ -69,4 +69,4 @@
 
     </div>
 
-</x-app-layout>
+</x-admin-layout>

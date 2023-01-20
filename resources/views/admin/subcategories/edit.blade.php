@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit Sub Category')  }}
@@ -10,7 +10,7 @@
         <div class="flex flex-col">
             <div class="overflow-hidden rounded-lg m-5">
                 <div class="flex justify-start">
-                    <a href="{{ route('subcategories.index') }}"
+                    <a href="{{ route('admin.subcategories.index') }}"
                        class="py-2 px-4 m-2 bg-green-500 hover:bg-green-300 text-gray-50">Back</a>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="mt-5 md:col-span-2 md:mt-0">
-                        <form action="{{ route('subcategories.update',$sub_category->id) }}" method="POST"
+                        <form action="{{ route('admin.subcategories.update',$sub_category->id) }}" method="POST"
                               enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -89,5 +89,5 @@
 
     </div>
 
-</x-app-layout>
+</x-admin-layout>
 
