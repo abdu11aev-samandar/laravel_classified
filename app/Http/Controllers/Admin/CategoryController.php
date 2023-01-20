@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -47,10 +48,10 @@ class CategoryController extends Controller
                 'image' => $path
             ]);
 
-            return redirect()->route('categories.index')->with('message','Category Created.');
+            return redirect()->route('admin.categories.index')->with('message', 'Category Created.');
         }
 
-        return redirect()->route('categories.index')->with('message','Category Created.');
+        return redirect()->route('admin.categories.index')->with('message', 'Category Created.');
     }
 
     /**
@@ -91,13 +92,13 @@ class CategoryController extends Controller
                 'slug' => Str::slug($request->name),
                 'image' => $path
             ]);
-            return redirect()->route('categories.index')->with('message','Category updated with image.');
+            return redirect()->route('admin.categories.index')->with('message', 'Category updated with image.');
         } else {
             $category->update([
                 'name' => $request->name,
                 'slug' => Str::slug($request->name)
             ]);
-            return redirect()->route('categories.index')->with('message','Category Updated.');
+            return redirect()->route('admin.categories.index')->with('message', 'Category Updated.');
         }
     }
 
@@ -111,6 +112,30 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->route('categories.index')->with('message','Category Deleted.');
+        return redirect()->route('admin.categories.index')->with('message', 'Category Deleted.');
+    }
+
+    public function add_sub(Category $category)
+    {
+        return view('admin.categories.add_sub', compact('category'));
+    }
+
+    public function add_sub_store(Request $request, Category $category)
+    {
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/subcategories');
+
+            $category->sub_categories()->create([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'category_id' => $category->id,
+                'image' => $path
+            ]);
+
+            return redirect()->route('admin.categories.index')->with('message', 'Sub Category Created.');
+        }
+
+        return redirect()->route('admin.categories.index')->with('message', 'Sub Category Created.');
+
     }
 }

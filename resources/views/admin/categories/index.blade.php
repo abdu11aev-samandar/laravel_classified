@@ -46,6 +46,10 @@
                                 <img class="h-12 w-12 rounded-md" src="{{ Storage::url($category->image) }}">
                             </div>
                         </td>
+                        <td class="flex px-6 py-4 whitespace-nowrap">
+                            <a href="{{ route('admin.add_sub',$category->id) }}"
+                               class="text-indigo-600 hover:text-indigo-900">Add Sub</a>
+                        </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <a href="{{ route('categories.edit',$category->id) }}"
                                class="text-indigo-600 hover:text-indigo-900">Edit</a>

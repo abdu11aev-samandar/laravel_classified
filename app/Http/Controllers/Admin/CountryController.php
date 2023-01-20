@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCountryRequest;
 use App\Models\Country;
+use App\Models\State;
 use Illuminate\Http\Request;
 
 class CountryController extends Controller
@@ -92,4 +93,19 @@ class CountryController extends Controller
 
         return redirect()->route('countries.index')->with('message', 'Country Deleted.');
     }
+
+    public function add_state(Country $country)
+    {
+        return view('admin.countries.add_state', compact('country'));
+    }
+
+    public function add_state_store(Country $country)
+    {
+        $country->states()->create([
+            'name'=>request()->name
+        ]);
+
+        return redirect()->route('admin.countries.index')->with('message','State Created.');
+    }
+
 }

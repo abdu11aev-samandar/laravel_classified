@@ -41,6 +41,10 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
+                            <a href="{{ route('admin.add_state',$country->id) }}"
+                               class="text-indigo-600 hover:text-indigo-900">Add State</a>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
                             <a href="{{ route('admin.countries.edit',$country->id) }}"
                                class="text-indigo-600 hover:text-indigo-900">Edit</a>
                         </td>
