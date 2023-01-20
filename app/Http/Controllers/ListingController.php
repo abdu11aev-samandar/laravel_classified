@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreListingRequest;
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ListingController extends Controller
@@ -161,6 +162,15 @@ class ListingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $listing = Listing::findOrFail($id);
+
+        Storage::delete($listing->featured_image);
+        Storage::delete($listing->image_one);
+        Storage::delete($listing->image_one);
+        Storage::delete($listing->image_one);
+
+        $listing->delete();
+
+        return redirect()->route('listings.index')->with('message', 'Listing Deleted successfully');
     }
 }

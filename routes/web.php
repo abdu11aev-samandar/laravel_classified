@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\Frontend\ListingController as FrontendListingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/all-listings', [FrontendListingController::class, 'index'])->name('all-listings');
 
 Route::middleware([
     'auth:sanctum',
