@@ -42,15 +42,31 @@
             </button>
         </div>
         <nav :class="{'block': open, 'hidden': !open}" class="flex-grow px-4 pb-4 md:block md:pb-0 md:overflow-y-auto">
-            <x-app-link class="bg-green-500 hover:bg-green-700" href="{{ route('listings.create') }}" :active="request()->routeIs('listings.create')">New Listing</x-app-link>
-            <x-app-link class="bg-green-500 hover:bg-green-700" href="{{ route('listings.index') }}" :active="request()->routeIs('listings.index')">My Listings</x-app-link>
+            <x-app-link class="bg-green-500 hover:bg-green-700" href="{{ route('listings.create') }}"
+                        :active="request()->routeIs('listings.create')">New Listing
+            </x-app-link>
+            <x-app-link class="bg-green-500 hover:bg-green-700" href="{{ route('listings.index') }}"
+                        :active="request()->routeIs('listings.index')">My Listings
+            </x-app-link>
             <x-app-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">Dashboard</x-app-link>
-            <x-app-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">Categories</x-app-link>
-            <x-app-link href="{{ route('subcategories.index') }}" :active="request()->routeIs('subcategories.index')">Sub Categories</x-app-link>
-            <x-app-link href="{{ route('childcategories.index') }}" :active="request()->routeIs('childcategories.index')">Child Categories</x-app-link>
-            <x-app-link href="{{ route('countries.index') }}" :active="request()->routeIs('countries.index')">Countries</x-app-link>
-            <x-app-link href="{{ route('states.index') }}" :active="request()->routeIs('states.index')">States</x-app-link>
-            <x-app-link href="{{ route('cities.index') }}" :active="request()->routeIs('cities.index')">Cities</x-app-link>
+            @role('admin')
+            <x-app-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
+                Categories
+            </x-app-link>
+            <x-app-link href="{{ route('subcategories.index') }}" :active="request()->routeIs('subcategories.index')">
+                Sub Categories
+            </x-app-link>
+            <x-app-link href="{{ route('childcategories.index') }}"
+                        :active="request()->routeIs('childcategories.index')">Child Categories
+            </x-app-link>
+            <x-app-link href="{{ route('countries.index') }}" :active="request()->routeIs('countries.index')">
+                Countries
+            </x-app-link>
+            <x-app-link href="{{ route('states.index') }}" :active="request()->routeIs('states.index')">States
+            </x-app-link>
+            <x-app-link href="{{ route('cities.index') }}" :active="request()->routeIs('cities.index')">Cities
+            </x-app-link>
+            @endrole
 
             <div @click.away="open = false" class="relative" x-data="{ open: false }">
                 <button @click="open = !open"
