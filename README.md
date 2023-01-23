@@ -2,7 +2,8 @@
 
 <h1>Laravel Classified</h1>
 
-![Downloads](https://img.shields.io/github/downloads/xkas01/laravel_classified/total) ![Contributors](https://img.shields.io/github/contributors/xkas01/laravel_classified?color=dark-green) ![Forks](https://img.shields.io/github/forks/xkas01/laravel_classified?style=social) ![Stargazers](https://img.shields.io/github/stars/xkas01/laravel_classified?style=social) ![Issues](https://img.shields.io/github/issues/xkas01/laravel_classified)
+![Downloads](https://img.shields.io/github/downloads/xkas01/laravel_classified/total) ![Contributors](https://img.shields.io/github/contributors/xkas01/laravel_classified?color=dark-green) ![Forks](https://img.shields.io/github/forks/xkas01/laravel_classified?style=social) ![Stargazers](https://img.shields.io/github/stars/xkas01/laravel_classified?style=social) ![Issues](https://img.shields.io/github/issues/xkas01/laravel_classified) ![visitor badge](https://visitor-badge.glitch.me/badge?page_id=xkas01.laravel_classified&left_text=My%20Page%20Visitors)
+
 
 <hr><p>This project is for starter developers from laravel 8, a video tutorial form Laraveller</p><h2>Technologies Used</h2>
 <hr><ul>
